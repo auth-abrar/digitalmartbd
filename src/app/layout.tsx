@@ -6,6 +6,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { MobileNav } from '@/components/layout/MobileNav';
 import { CartDrawer } from '@/components/cart/CartDrawer';
+import { AmbientBackground } from '@/components/ui/AmbientBackground';
 import { BUSINESS_CONFIG } from '@/config/business';
 
 export const metadata: Metadata = {
@@ -95,8 +96,9 @@ export default function RootLayout({
       >
         <LanguageProvider>
           <CartProvider>
+            <AmbientBackground />
             <Header />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1 relative z-10">{children}</main>
             <CartDrawer />
             <Footer />
             <MobileNav />
