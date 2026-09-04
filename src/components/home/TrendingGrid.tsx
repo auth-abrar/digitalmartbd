@@ -25,33 +25,33 @@ export function TrendingGrid() {
   ];
 
   return (
-    <section className="py-14 bg-white border-b border-slate-100">
+    <section className="py-16 bg-white/70 backdrop-blur-xs border-b border-slate-100 relative">
       <div className="max-w-container mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-pink-600 uppercase tracking-wider mb-1.5">
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-pink-600 uppercase tracking-wider mb-2 px-2.5 py-1 rounded-full bg-pink-50 border border-pink-100/80 shadow-2xs">
               <Flame className="w-3.5 h-3.5 fill-pink-500 text-pink-500" />
               <span>{locale === 'bn' ? 'পপুলার কালেকশন' : 'Popular Selection'}</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
               {t.trendingTitle}
             </h2>
-            <p className="mt-1.5 text-xs sm:text-sm text-slate-600 max-w-xl">
+            <p className="mt-2 text-xs sm:text-sm text-slate-600 max-w-xl leading-relaxed">
               {t.trendingSubtitle}
             </p>
           </div>
 
-          {/* Filter Pills */}
-          <div className="flex items-center gap-1.5 p-1 bg-slate-100 rounded-xl overflow-x-auto max-w-full">
+          {/* Filter Pills with Luxury Segmented Pill Styling */}
+          <div className="flex items-center gap-1.5 p-1.5 bg-slate-100/80 rounded-2xl border border-slate-200/80 overflow-x-auto max-w-full shadow-2xs">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all whitespace-nowrap cursor-pointer ${
+                className={`px-4 py-2 text-xs font-bold rounded-xl transition-all whitespace-nowrap cursor-pointer ${
                   activeTab === tab.id
-                    ? 'bg-white text-purple-700 shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-white text-purple-700 shadow-sm border border-purple-100/80'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
                 }`}
               >
                 {tab.label}

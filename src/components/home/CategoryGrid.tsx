@@ -49,40 +49,44 @@ export function CategoryGrid() {
               <Link
                 key={cat.id}
                 href={cat.slug === 'ai-tools' ? '/ai-tools' : cat.slug === 'social-media' ? '/social-media' : `/categories/${cat.slug}`}
-                className="group relative bg-white rounded-2xl p-6 border border-slate-200/90 hover:border-purple-400 hover:shadow-card-hover transition-all duration-200 flex flex-col justify-between overflow-hidden"
+                className="group relative bg-white/95 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-slate-200/90 hover:border-purple-400/80 hover:shadow-[0_16px_36px_-8px_rgba(124,58,237,0.12),0_4px_16px_-4px_rgba(0,0,0,0.04)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
               >
+                {/* Top Accent Line on Hover */}
+                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+
                 {/* Subtle gradient corner highlight */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-purple-100/50 to-transparent rounded-bl-full pointer-events-none group-hover:from-purple-200/50 transition-colors" />
+                <div className="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-purple-100/40 via-purple-50/20 to-transparent rounded-bl-full pointer-events-none group-hover:from-purple-200/50 transition-colors" />
 
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-purple-50 group-hover:bg-purple-600 group-hover:text-white transition-all flex items-center justify-center text-purple-600">
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-12 h-12 rounded-2xl bg-purple-50 border border-purple-100/70 group-hover:bg-purple-700 group-hover:text-white transition-all flex items-center justify-center text-purple-700 shadow-2xs group-hover:scale-105 duration-300">
                       <Icon className="w-6 h-6" />
                     </div>
                     {cat.badge_en && (
-                      <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-purple-50 text-purple-700">
+                      <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 border border-purple-100/80 shadow-2xs">
                         {locale === 'bn' ? cat.badge_bn : cat.badge_en}
                       </span>
                     )}
                   </div>
 
-                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-purple-700 transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-purple-700 transition-colors">
                     {locale === 'bn' ? cat.name_bn : cat.name_en}
                   </h3>
 
-                  <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed min-h-[38px]">
                     {locale === 'bn' ? cat.description_bn : cat.description_en}
                   </p>
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-purple-700 group-hover:text-purple-800">
-                  <span>
+                  <span className="text-slate-500 font-medium">
                     {locale === 'bn'
                       ? `${cat.itemCount}টি সার্ভিস উপলব্ধ`
                       : `${cat.itemCount} Services Available`}
                   </span>
-                  <span className="flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                    {locale === 'bn' ? 'সার্ভিস দেখুন' : 'Explore'} →
+                  <span className="flex items-center gap-1 group-hover:translate-x-1.5 transition-transform font-bold text-purple-700">
+                    <span>{locale === 'bn' ? 'সার্ভিস দেখুন' : 'Explore'}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
               </Link>

@@ -322,7 +322,7 @@ export const PRODUCTS: Product[] = [
     hasOffer: true,
     rating: 4.85,
     reviewCount: 65,
-    tags: ['perplexity', 'ai search', 'research', 'পারপ্লেক্সিটি'],
+    tags: ['perplexity', 'web research', 'research', 'পারপ্লেক্সিটি'],
     packages: [
       {
         id: 'perp-1m',

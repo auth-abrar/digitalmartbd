@@ -8,6 +8,7 @@ import { CATEGORIES } from '@/data/categories';
 import { ProductCard } from '@/components/product/ProductCard';
 import { Search, SlidersHorizontal, X, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { smartSearch } from '@/lib/searchEngine';
 
 function ProductsCatalogContent() {
   const searchParams = useSearchParams();
@@ -28,8 +29,18 @@ function ProductsCatalogContent() {
     return ['all', ...list];
   }, []);
 
+  // Smart search calculation
+  const searchResolution = useMemo(() => {
+    if (!searchTerm.trim()) return null;
+    return smartSearch(searchTerm.trim());
+  }, [searchTerm]);
+
   // Filter and sort products
   const filteredProducts = useMemo(() => {
+    const matchedIds = searchResolution 
+      ? new Set(searchResolution.products.map((p) => p.id)) 
+      : null;
+
     return PRODUCTS.filter((p) => {
       // Category filter
       if (selectedCategory !== 'all' && p.category !== selectedCategory) {
@@ -46,26 +57,9 @@ function ProductsCatalogContent() {
         return false;
       }
 
-      // Search query (supporting both English & Bengali terms)
-      if (searchTerm.trim()) {
-        const query = searchTerm.toLowerCase().trim();
-        const matchesNameEn = p.name_en.toLowerCase().includes(query);
-        const matchesNameBn = p.name_bn.toLowerCase().includes(query);
-        const matchesPlatform = p.platform.toLowerCase().includes(query);
-        const matchesTags = p.tags.some((t) => t.toLowerCase().includes(query));
-        const matchesDescEn = p.short_description_en.toLowerCase().includes(query);
-        const matchesDescBn = p.short_description_bn.toLowerCase().includes(query);
-
-        if (
-          !matchesNameEn &&
-          !matchesNameBn &&
-          !matchesPlatform &&
-          !matchesTags &&
-          !matchesDescEn &&
-          !matchesDescBn
-        ) {
-          return false;
-        }
+      // Smart Search filter
+      if (matchedIds && !matchedIds.has(p.id)) {
+        return false;
       }
 
       return true;
@@ -82,7 +76,7 @@ function ProductsCatalogContent() {
       // default: popularity / review count
       return b.reviewCount - a.reviewCount;
     });
-  }, [selectedCategory, selectedPlatform, offersOnly, searchTerm, sortBy]);
+  }, [selectedCategory, selectedPlatform, offersOnly, searchResolution, sortBy]);
 
   const resetFilters = () => {
     setSearchTerm('');
@@ -221,6 +215,28 @@ function ProductsCatalogContent() {
             </div>
           </div>
         </div>
+
+        {/* Smart Match Banner */}
+        {searchResolution?.didYouMean && (
+          <div className="mb-4 p-3 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-between text-xs text-purple-900">
+            <div className="flex items-center gap-1.5">
+              <span className="font-bold text-purple-700">
+                {locale === 'bn' ? 'সংশোধিত ম্যাচ:' : 'Smart Match:'}
+              </span>
+              <span>
+                {locale === 'bn' 
+                  ? 'সম্ভাব্য সঠিক নাম: ' 
+                  : 'Showing results matching '}
+                <strong className="underline underline-offset-2">{searchResolution.didYouMean}</strong>
+              </span>
+            </div>
+            {searchResolution.suggestedCategory && (
+              <span className="px-2 py-0.5 rounded-full bg-purple-200/60 text-purple-800 text-[10px] font-semibold">
+                {searchResolution.suggestedCategory}
+              </span>
+            )}
+          </div>
+        )}
 
         {/* Results Counter */}
         <div className="mb-4 text-xs font-semibold text-slate-500">
