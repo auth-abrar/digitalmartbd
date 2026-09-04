@@ -40,3 +40,5 @@ next-env.d.ts
 
 # ─── Prisma (Phase 3B+) ───────────────────────────────────────────────────────
 # prisma/migrations/ — DO NOT gitignore migrations once they exist
+
+.vercel
