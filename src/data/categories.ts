@@ -1,0 +1,40 @@
+import { Category } from '@/types';
+
+export const CATEGORIES: Category[] = [
+  {
+    id: 'cat-1',
+    slug: 'ai-tools',
+    name_en: 'AI Tools',
+    name_bn: 'AI টুলস',
+    description_en: 'ChatGPT, Claude, Google Gemini, Perplexity, Midjourney and productivity AI tools in one convenient place.',
+    description_bn: 'চ্যাটজিপিটি, ক্লড, জেমিনি, পারপ্লেক্সিটি এবং প্রয়োজনীয় সব AI টুল এক জায়গায় সাশ্রয়ী খরচে।',
+    icon: 'Bot',
+    badge_en: 'Most Popular',
+    badge_bn: 'টপ ট্রেন্ডিং',
+    itemCount: 6,
+  },
+  {
+    id: 'cat-2',
+    slug: 'social-media',
+    name_en: 'Social Media Services',
+    name_bn: 'সোশ্যাল মিডিয়া সার্ভিস',
+    description_en: 'Reliable growth solutions for Facebook, Instagram, and YouTube customized to your exact requirements.',
+    description_bn: 'ফেসবুক, ইনস্টাগ্রাম, ইউটিউবসহ বিভিন্ন সোশ্যাল মিডিয়া সার্ভিস আপনার প্রয়োজন অনুযায়ী।',
+    icon: 'Share2',
+    badge_en: 'High Demand',
+    badge_bn: 'পপুলার সার্ভিস',
+    itemCount: 8,
+  },
+  {
+    id: 'cat-3',
+    slug: 'digital-services',
+    name_en: 'Digital Services & Tools',
+    name_bn: 'ডিজিটাল সার্ভিস ও সফটওয়্যার',
+    description_en: 'Essential tools for online productivity, design, secure browsing, and creative digital workflows.',
+    description_bn: 'অনলাইন কাজ ও ডিজিটাল প্রেজেন্সের জন্য প্রয়োজনীয় বিভিন্ন সফটওয়্যার, ভিপিএন এবং সাবস্ক্রিপশন।',
+    icon: 'Layers',
+    badge_en: 'Essential',
+    badge_bn: 'দরকারি সার্ভিস',
+    itemCount: 5,
+  },
+];

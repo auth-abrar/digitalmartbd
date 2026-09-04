@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── SolaimanLipi Font Faces ─────────────────────────────────────────────── */
+@font-face {
+  font-family: 'SolaimanLipi';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/SolaimanLipi.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'SolaimanLipi';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/SolaimanLipi-Bold.woff2') format('woff2');
+}
+
+@layer base {
+  :root {
+    --brand-gradient: linear-gradient(135deg, #4C1D95 0%, #7C3AED 40%, #C026D3 80%, #EC4899 100%);
+    --brand-gradient-hover: linear-gradient(135deg, #3B0764 0%, #6D28D9 40%, #A21CAF 80%, #DB2777 100%);
+    --card-surface: #FFFFFF;
+    --canvas-bg: #F8FAFC;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: var(--canvas-bg);
+    color: #0F172A;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* When lang is Bengali, apply SolaimanLipi as primary */
+  html[lang="bn"], body.lang-bn, [lang="bn"] {
+    font-family: 'SolaimanLipi', 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+  }
+}
+
+/* ─── Custom Brand Utilities ────────────────────────────────────────────────── */
+.bg-brand-gradient {
+  background: linear-gradient(135deg, #4C1D95 0%, #7C3AED 40%, #C026D3 80%, #EC4899 100%);
+}
+
+.bg-brand-gradient-dark {
+  background: linear-gradient(135deg, #0B0F19 0%, #1E1B4B 50%, #2E1065 100%);
+}
+
+.text-brand-gradient {
+  background: linear-gradient(135deg, #7C3AED 0%, #C026D3 55%, #EC4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-brand-gradient {
+  border-image: linear-gradient(135deg, #7C3AED, #C026D3) 1;
+}
+
+/* Circuit lines pattern */
+.bg-circuit-mesh {
+  background-image: radial-gradient(rgba(124, 58, 237, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Custom modern scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Line clamps */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
