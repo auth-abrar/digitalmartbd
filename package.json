@@ -1,7 +1,8 @@
 {
-  "name": "nazeefa-ecommerce",
-  "version": "0.1.0",
+  "name": "digitalmartbd",
+  "version": "1.0.0",
   "private": true,
+  "description": "Digital Mart BD — Premium digital products and services marketplace for Bangladesh",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

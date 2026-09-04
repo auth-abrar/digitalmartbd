@@ -7,7 +7,7 @@ interface IconProps {
   size?: number;
 }
 
-// 1. ChatGPT (OpenAI) — from uploaded chatgpt.svg
+// 1. ChatGPT Brand Icon
 export function ChatGptIcon({ className = 'w-5 h-5', size }: IconProps) {
   return (
     <svg
@@ -27,7 +27,7 @@ export function ChatGptIcon({ className = 'w-5 h-5', size }: IconProps) {
   );
 }
 
-// 2. Claude AI — from uploaded claude-ai.svg
+// 2. Claude AI Brand Icon
 export function ClaudeIcon({ className = 'w-5 h-5', size, color = '#d97757' }: IconProps & { color?: string }) {
   return (
     <svg
@@ -47,7 +47,7 @@ export function ClaudeIcon({ className = 'w-5 h-5', size, color = '#d97757' }: I
   );
 }
 
-// 3. Google Gemini — from uploaded gemini.svg
+// 3. Google Gemini Brand Icon
 export function GeminiIcon({ className = 'w-5 h-5', size }: IconProps) {
   return (
     <svg
@@ -60,7 +60,7 @@ export function GeminiIcon({ className = 'w-5 h-5', size }: IconProps) {
       <title>Google Gemini</title>
       <defs>
         <radialGradient
-          id="geminiGradUploaded"
+          id="geminiGrad"
           cx="-80.789"
           cy="2.985"
           r="32"
@@ -73,14 +73,14 @@ export function GeminiIcon({ className = 'w-5 h-5', size }: IconProps) {
         </radialGradient>
       </defs>
       <path
-        fill="url(#geminiGradUploaded)"
+        fill="url(#geminiGrad)"
         d="M512 256.5c-137.5 8.4-247.1 118-255.5 255.5h-1C247.1 374.5 137.5 264.9 0 256.5v-1c137.5-8.4 247.1-118 255.5-255.5h1c8.4 137.5 118 247.1 255.5 255.5z"
       />
     </svg>
   );
 }
 
-// 4. Perplexity AI — from uploaded perplexity-ai.svg
+// 4. Perplexity AI Brand Icon
 export function PerplexityIcon({ className = 'w-5 h-5', size }: IconProps) {
   return (
     <svg
@@ -97,7 +97,7 @@ export function PerplexityIcon({ className = 'w-5 h-5', size }: IconProps) {
   );
 }
 
-// 5. Canva — from uploaded canva.svg
+// 5. Canva Brand Icon
 export function CanvaIcon({ className = 'w-5 h-5', size }: IconProps) {
   return (
     <svg
@@ -173,7 +173,7 @@ export function CanvaIcon({ className = 'w-5 h-5', size }: IconProps) {
   );
 }
 
-// 6. bKash — from uploaded BKash.svg (origami bird focus for square badge)
+// 6. bKash Mark Icon
 export function BkashIcon({ className = 'w-6 h-6', size }: IconProps) {
   return (
     <svg
@@ -196,7 +196,7 @@ export function BkashIcon({ className = 'w-6 h-6', size }: IconProps) {
   );
 }
 
-// 6b. bKash Full Brand Logo with Wordmark — from uploaded BKash.svg
+// 6b. bKash Full Logo with Wordmark
 export function BkashFullLogo({ className = 'h-6 w-auto', textColor = '#231F20' }: { className?: string; textColor?: string }) {
   return (
     <svg
@@ -221,7 +221,7 @@ export function BkashFullLogo({ className = 'h-6 w-auto', textColor = '#231F20' 
   );
 }
 
-// 7. Nagad — from uploaded Nagad.svg (flame/swirl focus for square badge)
+// 7. Nagad Mark Icon
 export function NagadIcon({ className = 'w-6 h-6', size }: IconProps) {
   return (
     <svg
@@ -252,7 +252,7 @@ export function NagadIcon({ className = 'w-6 h-6', size }: IconProps) {
   );
 }
 
-// 7b. Nagad Full Brand Logo with Wordmark — from uploaded Nagad.svg
+// 7b. Nagad Full Logo with Wordmark
 export function NagadFullLogo({ className = 'h-6 w-auto' }: { className?: string }) {
   return (
     <svg

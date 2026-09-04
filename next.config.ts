@@ -5,8 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     // Domains allowed for remote images (configured per environment)
     remotePatterns: [
-      // Production CDN / storage will be added here via environment config
-      // Example: { protocol: 'https', hostname: 'cdn.nazeefa.com' }
+      // Example: { protocol: 'https', hostname: 'cdn.digitalmartbd.com' }
     ],
     formats: ['image/avif', 'image/webp'],
     // Reasonable device sizes for responsive product images
