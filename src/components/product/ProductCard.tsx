@@ -66,21 +66,21 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
 
       {/* Top Banner & Platform Header */}
-      <div className="p-5 pb-3">
-        <div className="flex items-center justify-between gap-2 mb-3">
+      <div className="p-3.5 sm:p-5 pb-2.5 sm:pb-3">
+        <div className="flex items-center justify-between gap-1.5 sm:gap-2 mb-2 sm:mb-3">
           {/* Platform Tag */}
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200/70 text-xs font-bold text-slate-700 group-hover:bg-purple-50 group-hover:border-purple-200 group-hover:text-purple-800 transition-colors shadow-2xs">
-            <PlatformIcon platform={product.platform} className="w-3.5 h-3.5" />
-            <span>{product.platform}</span>
+          <div className="flex items-center gap-1 sm:gap-1.5 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg sm:rounded-xl bg-slate-50 border border-slate-200/70 text-[10px] sm:text-xs font-bold text-slate-700 group-hover:bg-purple-50 group-hover:border-purple-200 group-hover:text-purple-800 transition-colors shadow-2xs">
+            <PlatformIcon platform={product.platform} className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+            <span className="truncate max-w-[70px] sm:max-w-none">{product.platform}</span>
           </div>
 
           {/* Badge (Featured / Best Seller / Hot) */}
           {product.badge_en ? (
-            <Badge variant="brand" size="sm" className="shadow-2xs">
+            <span className="text-[9px] sm:text-[10px] font-black px-1.5 py-0.5 sm:px-2 rounded-full bg-purple-100 text-purple-800 border border-purple-200/80 shadow-2xs">
               {isBn ? product.badge_bn || product.badge_en : product.badge_en}
-            </Badge>
+            </span>
           ) : discountPercent ? (
-            <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 border border-rose-200">
+            <span className="text-[9px] sm:text-[10px] font-black px-1.5 py-0.5 sm:px-2 rounded-full bg-rose-50 text-rose-700 border border-rose-200 shadow-2xs">
               {discountPercent}% OFF
             </span>
           ) : null}
@@ -88,41 +88,43 @@ export function ProductCard({ product }: ProductCardProps) {
 
         {/* Product Title */}
         <Link href={`/products/${product.slug}`} className="block">
-          <h3 className="text-base font-bold text-slate-900 group-hover:text-purple-700 transition-colors leading-snug line-clamp-1">
+          <h3 className="text-xs sm:text-base font-bold text-slate-900 group-hover:text-purple-700 transition-colors leading-snug line-clamp-2 min-h-[2rem] sm:min-h-[2.5rem]">
             {isBn ? product.name_bn : product.name_en}
           </h3>
         </Link>
 
-        {/* Short Description */}
-        <p className="mt-1.5 text-xs text-slate-500 leading-relaxed line-clamp-2 min-h-[32px]">
+        {/* Short Description (Hidden on compact mobile screens to keep cards uniform) */}
+        <p className="hidden sm:block mt-1.5 text-xs text-slate-500 leading-relaxed line-clamp-2 min-h-[32px]">
           {isBn ? product.short_description_bn : product.short_description_en}
         </p>
 
         {/* Package & Delivery Row */}
-        <div className="mt-3 flex items-center justify-between text-[11px] text-slate-500 pt-2.5 border-t border-slate-100">
-          <span className="font-semibold text-purple-700 bg-purple-50/80 px-2 py-0.5 rounded-md border border-purple-100/60 truncate max-w-[140px]">
+        <div className="mt-2 sm:mt-3 flex items-center justify-between text-[10px] sm:text-[11px] text-slate-500 pt-2 sm:pt-2.5 border-t border-slate-100">
+          <span className="font-semibold text-purple-700 bg-purple-50/90 px-1.5 py-0.5 sm:px-2 rounded-md border border-purple-100/60 truncate max-w-[85px] sm:max-w-[140px]">
             {isBn ? defaultPackage.name_bn : defaultPackage.name_en}
           </span>
           <div className="flex items-center gap-1 text-emerald-600 font-semibold shrink-0">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span>{isBn ? product.deliveryTime_bn : product.deliveryTime_en}</span>
+            <span className="truncate max-w-[75px] sm:max-w-none">
+              {isBn ? product.deliveryTime_bn : product.deliveryTime_en}
+            </span>
           </div>
         </div>
       </div>
 
       {/* Pricing & CTA Buttons */}
-      <div className="p-5 pt-3.5 bg-slate-50/80 border-t border-slate-100 flex flex-col gap-3">
-        <div className="flex items-baseline justify-between">
+      <div className="p-3 sm:p-5 pt-2.5 sm:pt-3.5 bg-slate-50/80 border-t border-slate-100 flex flex-col gap-2 sm:gap-3">
+        <div className="flex items-baseline justify-between gap-1">
           <div>
-            <div className="text-[11px] text-slate-400 font-medium">
+            <div className="text-[10px] sm:text-[11px] text-slate-400 font-medium">
               {isBn ? 'শুরু মাত্র' : 'Starting from'}
             </div>
-            <div className="flex items-baseline gap-2 mt-0.5">
-              <span className="text-xl font-black text-slate-900 tracking-tight">
+            <div className="flex items-baseline gap-1.5 sm:gap-2 mt-0.5">
+              <span className="text-base sm:text-xl font-black text-slate-900 tracking-tight">
                 {formatPrice(defaultPackage.price, locale)}
               </span>
               {defaultPackage.originalPrice && (
-                <span className="text-xs text-slate-400 line-through">
+                <span className="text-[10px] sm:text-xs text-slate-400 line-through">
                   {formatPrice(defaultPackage.originalPrice, locale)}
                 </span>
               )}
@@ -130,28 +132,40 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
 
           {/* Rating */}
-          <div className="flex items-center gap-1 text-xs font-bold text-amber-500 bg-white px-2 py-1 rounded-lg border border-slate-200/80 shadow-2xs">
+          <div className="flex items-center gap-0.5 sm:gap-1 text-[10px] sm:text-xs font-bold text-amber-500 bg-white px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-md sm:rounded-lg border border-slate-200/80 shadow-2xs">
             <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
             <span>{product.rating}</span>
-            <span className="text-slate-400 font-normal">({product.reviewCount})</span>
+            <span className="text-slate-400 font-normal hidden sm:inline">({product.reviewCount})</span>
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="grid grid-cols-2 gap-2 pt-1">
+        {/* Action Buttons: Responsive Dual Layout */}
+        <div className="flex items-center gap-1.5 sm:gap-2 pt-0.5 sm:pt-1">
+          {/* Desktop Quick View */}
           <Link
             href={`/products/${product.slug}`}
-            className="w-full inline-flex items-center justify-center text-xs font-bold py-2.5 px-3 rounded-xl border border-slate-200 bg-white text-slate-700 hover:border-purple-400 hover:text-purple-700 hover:bg-purple-50/50 transition-all text-center shadow-2xs"
+            className="hidden sm:inline-flex flex-1 items-center justify-center text-xs font-bold py-2.5 px-3 rounded-xl border border-slate-200 bg-white text-slate-700 hover:border-purple-400 hover:text-purple-700 hover:bg-purple-50/50 transition-all text-center shadow-2xs active:scale-95"
           >
             {t.quickView}
           </Link>
 
+          {/* Mobile Quick Cart Icon Button */}
+          <button
+            onClick={handleAddToCart}
+            className="sm:hidden p-2.5 rounded-xl border border-slate-200 bg-white text-slate-700 active:bg-purple-50 active:text-purple-700 active:border-purple-300 transition-all shadow-2xs active:scale-95 flex-shrink-0"
+            aria-label="Add to cart"
+            title="কার্টে যোগ করুন"
+          >
+            <ShoppingCart className="w-4 h-4" />
+          </button>
+
+          {/* Direct Order Now Button */}
           <Button
             variant="primary"
             size="sm"
             onClick={handleQuickOrder}
-            className="w-full text-xs font-bold shadow-sm shadow-purple-600/20"
-            rightIcon={<ArrowRight className="w-3.5 h-3.5" />}
+            className="flex-1 text-[11px] sm:text-xs font-bold shadow-sm shadow-purple-600/20 py-2 sm:py-2.5 h-auto active:scale-95"
+            rightIcon={<ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />}
           >
             {t.orderNow}
           </Button>

@@ -82,19 +82,19 @@ export function HeroSection() {
               </Link>
             </div>
 
-            {/* Trust Badges */}
-            <div className="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-600 font-medium">
-              <div className="flex items-center justify-center lg:justify-start gap-2 bg-white/80 backdrop-blur-xs py-2 px-3 rounded-lg border border-slate-200/80">
-                <Zap className="w-4 h-4 text-purple-600 flex-shrink-0" />
-                <span>{t.heroFeature1}</span>
+            {/* Trust Badges: Compact Row on Mobile */}
+            <div className="pt-3 grid grid-cols-3 gap-1.5 sm:gap-3 text-[10.5px] sm:text-xs text-slate-600 font-medium">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-1 sm:gap-2 bg-white/85 backdrop-blur-xs py-2 px-1.5 sm:px-3 rounded-xl border border-slate-200/80 text-center sm:text-left shadow-2xs">
+                <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-600 flex-shrink-0" />
+                <span className="leading-tight">{t.heroFeature1}</span>
               </div>
-              <div className="flex items-center justify-center lg:justify-start gap-2 bg-white/80 backdrop-blur-xs py-2 px-3 rounded-lg border border-slate-200/80">
-                <ShieldCheck className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                <span>{t.heroFeature2}</span>
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-1 sm:gap-2 bg-white/85 backdrop-blur-xs py-2 px-1.5 sm:px-3 rounded-xl border border-slate-200/80 text-center sm:text-left shadow-2xs">
+                <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 flex-shrink-0" />
+                <span className="leading-tight">{t.heroFeature2}</span>
               </div>
-              <div className="flex items-center justify-center lg:justify-start gap-2 bg-white/80 backdrop-blur-xs py-2 px-3 rounded-lg border border-slate-200/80">
-                <Headphones className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                <span>{t.heroFeature3}</span>
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-1 sm:gap-2 bg-white/85 backdrop-blur-xs py-2 px-1.5 sm:px-3 rounded-xl border border-slate-200/80 text-center sm:text-left shadow-2xs">
+                <Headphones className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 flex-shrink-0" />
+                <span className="leading-tight">{t.heroFeature3}</span>
               </div>
             </div>
           </div>

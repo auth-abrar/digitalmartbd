@@ -103,17 +103,17 @@ function ProductsCatalogContent() {
 
         {/* Filter Controls Bar */}
         <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm mb-8 space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
+          <div className="grid grid-cols-2 md:grid-cols-12 gap-2.5 sm:gap-3 items-center">
             {/* Search Input */}
-            <div className="md:col-span-6 relative">
+            <div className="col-span-2 md:col-span-6 relative">
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder={t.searchPlaceholder}
-                className="w-full pl-10 pr-8 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-600 focus:bg-white transition-all text-slate-800"
+                className="w-full pl-10 pr-8 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-600 focus:bg-white transition-all text-slate-800"
               />
-              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               {searchTerm && (
                 <button
                   onClick={() => setSearchTerm('')}
@@ -125,11 +125,11 @@ function ProductsCatalogContent() {
             </div>
 
             {/* Platform Selector */}
-            <div className="md:col-span-3">
+            <div className="col-span-1 md:col-span-3">
               <select
                 value={selectedPlatform}
                 onChange={(e) => setSelectedPlatform(e.target.value)}
-                className="w-full px-3 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-slate-700 font-medium"
+                className="w-full px-2.5 sm:px-3 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-slate-700 font-medium truncate"
               >
                 <option value="all">
                   {locale === 'bn' ? 'সব প্ল্যাটফর্ম' : 'All Platforms'}
@@ -145,11 +145,11 @@ function ProductsCatalogContent() {
             </div>
 
             {/* Sorter */}
-            <div className="md:col-span-3">
+            <div className="col-span-1 md:col-span-3">
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="w-full px-3 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-slate-700 font-medium"
+                className="w-full px-2.5 sm:px-3 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-slate-700 font-medium truncate"
               >
                 <option value="popular">{t.sortPopular}</option>
                 <option value="price-low">{t.sortPriceLow}</option>
@@ -262,7 +262,7 @@ function ProductsCatalogContent() {
             </Button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

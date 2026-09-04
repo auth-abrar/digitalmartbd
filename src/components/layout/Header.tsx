@@ -116,13 +116,15 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full transition-all duration-200">
       {/* ─── Top Notification / Trust Bar ───────────────────────────────── */}
-      <div className="bg-slate-950 text-slate-200 text-xs py-2 px-4 border-b border-purple-950/60">
-        <div className="max-w-container mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="font-medium text-slate-300">{t.topNotice}</span>
+      <div className="bg-slate-950 text-slate-200 text-xs py-1.5 px-3 sm:px-4 border-b border-purple-950/60">
+        <div className="max-w-container mx-auto flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 truncate min-w-0">
+            <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+            <span className="font-medium text-slate-300 text-[11px] sm:text-xs truncate">
+              {t.topNotice}
+            </span>
           </div>
-          <div className="hidden md:flex items-center gap-4 text-[11px] text-slate-400">
+          <div className="hidden md:flex items-center gap-4 text-[11px] text-slate-400 flex-shrink-0">
             <a
               href={`https://wa.me/${BUSINESS_CONFIG.whatsappNumber}`}
               target="_blank"
@@ -141,12 +143,14 @@ export function Header() {
       {/* ─── Main Sticky Navigation ─────────────────────────────────────── */}
       <div
         className={`bg-white/95 backdrop-blur-md transition-all duration-200 ${
-          isScrolled ? 'shadow-md border-b border-slate-200/80 py-2.5' : 'border-b border-slate-100 py-3.5'
+          isScrolled ? 'shadow-md border-b border-slate-200/80 py-2 sm:py-2.5' : 'border-b border-slate-100 py-2.5 sm:py-3.5'
         }`}
       >
-        <div className="max-w-container mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+        <div className="max-w-container mx-auto px-3 sm:px-6 flex items-center justify-between gap-3">
           {/* Official Brand Logo */}
-          <BrandLogo size="md" />
+          <div className="flex-shrink-0">
+            <BrandLogo size="md" />
+          </div>
 
           {/* Desktop Search Trigger Bar with Cmd+K Badge */}
           <div 
@@ -163,30 +167,21 @@ export function Header() {
           </div>
 
           {/* Header Action Items */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Mobile Quick Search Button */}
-            <button
-              onClick={() => setIsSearchModalOpen(true)}
-              className="lg:hidden p-2 rounded-lg text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-colors"
-              aria-label="Search Catalog"
-            >
-              <Search className="w-5 h-5" />
-            </button>
-
+          <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
             {/* Language Switcher Button */}
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-200 bg-slate-50 hover:bg-purple-50 hover:border-purple-300 text-slate-700 hover:text-purple-700 transition-all cursor-pointer"
+              className="flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold rounded-lg border border-slate-200 bg-slate-50 hover:bg-purple-50 hover:border-purple-300 text-slate-700 hover:text-purple-700 transition-all cursor-pointer active:scale-95"
               title={locale === 'bn' ? 'Switch to English' : 'বাংলা ভাষায় পরিবর্তন করুন'}
             >
               <Globe className="w-3.5 h-3.5 text-purple-600" />
-              <span className="font-semibold">{locale === 'bn' ? 'EN' : 'বাংলা'}</span>
+              <span className="font-semibold text-[11px] sm:text-xs">{locale === 'bn' ? 'EN' : 'বাংলা'}</span>
             </button>
 
             {/* Cart Drawer Trigger */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative p-2 rounded-lg text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-colors cursor-pointer"
+              className="relative p-2 rounded-lg text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-colors cursor-pointer active:scale-95"
               aria-label={t.cart}
             >
               <ShoppingCart className="w-5 h-5" />
@@ -200,11 +195,29 @@ export function Header() {
             {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-colors"
+              className="lg:hidden p-2 rounded-lg text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-colors active:scale-95"
               aria-label="Toggle Menu"
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? <X className="w-5 h-5 text-purple-700" /> : <Menu className="w-5 h-5" />}
             </button>
+          </div>
+        </div>
+
+        {/* ─── Mobile Dedicated Integrated Search Input Bar ──────────────── */}
+        <div className="block lg:hidden px-3 pt-2 pb-0.5">
+          <div
+            onClick={() => setIsSearchModalOpen(true)}
+            className="w-full flex items-center justify-between px-3 py-2 bg-slate-100/90 active:bg-slate-200/90 border border-slate-200/90 rounded-xl text-slate-400 text-xs shadow-2xs transition-all cursor-pointer"
+          >
+            <div className="flex items-center gap-2 truncate min-w-0">
+              <Search className="w-3.5 h-3.5 text-purple-600 flex-shrink-0" />
+              <span className="truncate font-medium text-slate-500 text-[11.5px]">
+                {t.searchPlaceholder}
+              </span>
+            </div>
+            <span className="text-[10px] font-bold text-purple-700 bg-purple-100/80 px-2 py-0.5 rounded-md flex-shrink-0 ml-1">
+              {locale === 'bn' ? 'সার্চ' : 'Search'}
+            </span>
           </div>
         </div>
 
@@ -257,59 +270,84 @@ export function Header() {
         </nav>
       </div>
 
-      {/* ─── Mobile Slide-out Menu ──────────────────────────────────────── */}
+      {/* ─── Mobile Slide-out Drawer ────────────────────────────────────── */}
       {isMobileMenuOpen && (
         <div
-          className="lg:hidden fixed inset-0 top-[88px] bg-slate-900/50 backdrop-blur-xs z-50 transition-opacity"
+          className="lg:hidden fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs flex justify-end transition-opacity duration-200"
           onClick={() => setIsMobileMenuOpen(false)}
         >
           <div
-            className="bg-white w-4/5 max-w-sm h-full p-5 overflow-y-auto shadow-2xl flex flex-col justify-between animate-slide-in-right"
+            className="bg-white w-[85%] max-w-sm h-full p-5 overflow-y-auto shadow-2xl flex flex-col justify-between"
             onClick={(e) => e.stopPropagation()}
           >
-            <div>
-              {/* Mobile Search Trigger */}
-              <div
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  setIsSearchModalOpen(true);
-                }}
-                className="relative mb-4 cursor-pointer"
-              >
-                <div className="w-full pl-9 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl text-slate-400 flex items-center justify-between shadow-xs">
-                  <span>{t.searchPlaceholder}</span>
-                  <Search className="w-4 h-4 text-purple-600" />
-                </div>
+            <div className="space-y-5">
+              {/* Drawer Top Header with Brand & Close Button */}
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                <BrandLogo size="sm" />
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-1.5 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors"
+                  aria-label="Close navigation menu"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Quick Category Action Chips */}
+              <div className="grid grid-cols-2 gap-2">
+                <Link
+                  href="/ai-tools"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2.5 rounded-xl bg-purple-50/80 border border-purple-100 text-purple-900 text-xs font-bold flex items-center justify-between"
+                >
+                  <span>AI টুলস</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-purple-200/60 text-purple-800 font-extrabold">AI</span>
+                </Link>
+                <Link
+                  href="/social-media"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2.5 rounded-xl bg-blue-50/80 border border-blue-100 text-blue-900 text-xs font-bold flex items-center justify-between"
+                >
+                  <span>সোশ্যাল মিডিয়া</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-200/60 text-blue-800 font-extrabold">GROW</span>
+                </Link>
               </div>
 
               {/* Mobile Navigation Links */}
               <nav className="space-y-1">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-purple-50 hover:text-purple-700 transition-colors"
-                  >
-                    <span>{link.label}</span>
-                    {link.badge && (
-                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700">
-                        {link.badge}
-                      </span>
-                    )}
-                    {link.isOffer && (
-                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-pink-100 text-pink-700">
-                        HOT
-                      </span>
-                    )}
-                  </Link>
-                ))}
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
+                        isActive
+                          ? 'bg-purple-50 text-purple-700 font-bold border-l-4 border-purple-600'
+                          : 'text-slate-700 hover:bg-slate-50 hover:text-purple-700'
+                      }`}
+                    >
+                      <span>{link.label}</span>
+                      {link.badge && (
+                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700">
+                          {link.badge}
+                        </span>
+                      )}
+                      {link.isOffer && (
+                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-pink-100 text-pink-700">
+                          HOT
+                        </span>
+                      )}
+                    </Link>
+                  );
+                })}
 
                 {/* Track Order in Mobile Drawer */}
                 <Link
                   href="/track-order"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-purple-700 hover:bg-purple-50 transition-colors"
+                  className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-purple-700 hover:bg-purple-50 transition-colors"
                 >
                   <span className="flex items-center gap-2">
                     <Clock className="w-4 h-4 text-purple-600" />
@@ -319,22 +357,22 @@ export function Header() {
               </nav>
             </div>
 
-            {/* Mobile Footer Info */}
-            <div className="pt-6 border-t border-slate-100 space-y-3">
-              <div className="text-xs text-slate-500">
-                <div className="font-semibold text-slate-800 mb-1">
-                  {locale === 'bn' ? 'সাপোর্ট হেল্পলাইন:' : 'Direct Helpline:'}
+            {/* Mobile Footer Direct Contact Card */}
+            <div className="pt-5 border-t border-slate-100 space-y-3">
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-600">
+                <div className="font-bold text-slate-900 mb-0.5">
+                  {locale === 'bn' ? 'জরুরি কাস্টমার কেয়ার:' : 'Customer Helpline:'}
                 </div>
-                <div>{BUSINESS_CONFIG.phoneDisplay}</div>
+                <div className="text-purple-700 font-semibold">{BUSINESS_CONFIG.phoneDisplay}</div>
               </div>
               <a
                 href={`https://wa.me/${BUSINESS_CONFIG.whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-emerald-600 text-white text-xs font-bold shadow-sm"
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-98 text-white text-xs font-bold shadow-md shadow-emerald-600/20 transition-all"
               >
                 <PhoneCall className="w-4 h-4" />
-                <span>{locale === 'bn' ? 'হোয়াটসঅ্যাপে কথা বলুন' : 'Chat on WhatsApp'}</span>
+                <span>{locale === 'bn' ? 'সরাসরি হোয়াটসঅ্যাপে কথা বলুন' : 'Chat on WhatsApp'}</span>
               </a>
             </div>
           </div>

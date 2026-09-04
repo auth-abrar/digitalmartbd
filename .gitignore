@@ -42,3 +42,4 @@ next-env.d.ts
 # prisma/migrations/ — DO NOT gitignore migrations once they exist
 
 .vercel
+.env*
